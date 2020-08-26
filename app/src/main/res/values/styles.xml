@@ -12,4 +12,12 @@
         <item name="fontFamily">@font/quicksand</item>
     </style>
 
+    <style name="Subtitle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/quicksand</item>
+    </style>
+
+    <style name="PrimaryTemp" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/quicksand</item>
+    </style>
+
 </resources>
