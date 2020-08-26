@@ -19,6 +19,10 @@ import com.rohankadkol.weatherapp10.aac.WeatherViewModel;
 import com.rohankadkol.weatherapp10.models.ApiResponse;
 import com.rohankadkol.weatherapp10.utils.GeocoderUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mTvHigh;
     TextView mTvLow;
     TextView mTvUnit;
+    TextView mTvTime;
 
     WeatherViewModel mWeatherViewModel;
 
@@ -52,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         mTvHigh = mWeatherCard.findViewById(R.id.tv_high);
         mTvLow = mWeatherCard.findViewById(R.id.tv_low);
         mTvUnit = mWeatherCard.findViewById(R.id.tv_unit);
+
+        mTvTime = findViewById(R.id.tv_time);
 
         mWeatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
         mWeatherViewModel.getApiResponse().observe(this, new Observer<ApiResponse>() {
@@ -85,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
         mTvHigh.setText(String.format("%.0f°", response.getDaily()[0].getTemp().getMax()));
         mTvLow.setText(String.format("%.0f°", response.getDaily()[0].getTemp().getMin()));
         setWeatherIcon(response.getCurrent().getWeather()[0].getIcon());
+
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa, EEE, MMM dd");
+        TimeZone timeZone = TimeZone.getDefault();
+        long time = response.getCurrent().getDt();
+        long offset = timeZone.getOffset(time * 1000) / 1000;
+        long localTime = time - offset + response.getTimezone_offset();
+        String timeString = "Local time: " + formatter.format(new Date(localTime * 1000));
+        mTvTime.setText(timeString);
     }
 
     private void setWeatherIcon(String code) {

@@ -20,4 +20,8 @@
         <item name="fontFamily">@font/quicksand</item>
     </style>
 
+    <style name="Content" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/quicksand</item>
+    </style>
+
 </resources>

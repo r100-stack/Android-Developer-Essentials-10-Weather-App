@@ -27,4 +27,14 @@
         android:layout_marginTop="@dimen/default_margin_small"
         app:layout_constraintTop_toBottomOf="@id/input_bar"/>
 
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        tools:text="Last updated: 2:44 PM, Mon"
+        android:textAlignment="center"
+        style="@style/Content"
+        app:layout_constraintTop_toBottomOf="@id/weather_card"
+        android:layout_marginTop="@dimen/default_margin_large"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

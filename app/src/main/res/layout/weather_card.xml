@@ -18,12 +18,12 @@
         android:id="@+id/iv_weather"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        tools:src="@drawable/weather_0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/weather_0" />
 
     <TextView
         android:id="@+id/tv_temp"
@@ -43,18 +43,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tv_temp"
         app:layout_constraintStart_toEndOf="@id/tv_temp"
         app:layout_constraintTop_toTopOf="@id/tv_temp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_temp"
         tools:text="°" />
 
     <TextView
         android:id="@+id/tv_unit"
+        style="@style/Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Subtitle"
-        app:layout_constraintStart_toEndOf="@id/tv_degree"
         app:layout_constraintBaseline_toBaselineOf="@id/tv_temp"
+        app:layout_constraintStart_toEndOf="@id/tv_degree"
         tools:text="F" />
 
     <TextView
@@ -64,46 +64,47 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin_small"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/tv_temp"
         app:layout_constraintEnd_toEndOf="@id/tv_temp"
+        app:layout_constraintStart_toStartOf="@id/tv_temp"
         app:layout_constraintTop_toBottomOf="@id/tv_temp"
         tools:text="Misty" />
 
     <LinearLayout
+        android:id="@+id/temp_range_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin_small"
-        app:layout_constraintTop_toBottomOf="@id/tv_weather"
+        app:layout_constraintEnd_toEndOf="@id/tv_temp"
         app:layout_constraintStart_toStartOf="@id/tv_temp"
-        app:layout_constraintEnd_toEndOf="@id/tv_temp">
+        app:layout_constraintTop_toBottomOf="@id/tv_weather">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_keyboard_arrow_up_black_24dp"/>
+            android:src="@drawable/ic_keyboard_arrow_up_black_24dp" />
 
         <TextView
             android:id="@+id/tv_high"
-            android:layout_gravity="center"
+            style="@style/Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="21°"
-            style="@style/Subtitle"/>
+            android:layout_gravity="center"
+            tools:text="21°" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_keyboard_arrow_down_black_24dp"/>
+            android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
         <TextView
             android:id="@+id/tv_low"
-            android:layout_gravity="center"
+            style="@style/Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="14°"
-            style="@style/Subtitle"/>
+            android:layout_gravity="center"
+            tools:text="14°" />
 
     </LinearLayout>
 
