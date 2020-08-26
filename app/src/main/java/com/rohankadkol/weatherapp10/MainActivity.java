@@ -6,16 +6,26 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rohankadkol.weatherapp10.aac.WeatherViewModel;
 import com.rohankadkol.weatherapp10.models.ApiResponse;
+import com.rohankadkol.weatherapp10.utils.GeocoderUtils;
 
 import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    LinearLayout mInputBar;
+    EditText mEtLocation;
 
     ConstraintLayout mWeatherCard;
     GifImageView mIvWeather;
@@ -25,10 +35,15 @@ public class MainActivity extends AppCompatActivity {
     TextView mTvLow;
     TextView mTvUnit;
 
+    WeatherViewModel mWeatherViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mInputBar = findViewById(R.id.input_bar);
+        mEtLocation = mInputBar.findViewById(R.id.et_location);
 
         mWeatherCard = findViewById(R.id.weather_card);
         mIvWeather = mWeatherCard.findViewById(R.id.iv_weather);
@@ -38,18 +53,29 @@ public class MainActivity extends AppCompatActivity {
         mTvLow = mWeatherCard.findViewById(R.id.tv_low);
         mTvUnit = mWeatherCard.findViewById(R.id.tv_unit);
 
-        WeatherViewModel weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
-//        WeatherViewModel weatherViewModel1 = new ViewModelProvider.NewInstanceFactory().create(WeatherViewModel.class);
-
-        weatherViewModel.downloadWeather();
-
-        weatherViewModel.getApiResponse().observe(this, new Observer<ApiResponse>() {
+        mWeatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
+        mWeatherViewModel.getApiResponse().observe(this, new Observer<ApiResponse>() {
             @Override
             public void onChanged(ApiResponse response) {
                 Log.d(TAG, "onChanged: " + response.getCurrent().getTemp());
                 populateUi(response);
             }
         });
+
+        downloadWeather();
+    }
+
+    public void onButtonClick(View view) {
+        downloadWeather();
+    }
+
+    private void downloadWeather() {
+        double[] latLng = GeocoderUtils.getLatLng(this, mEtLocation.getText().toString());
+        if (latLng != null) {
+            mWeatherViewModel.downloadWeather(latLng[0], latLng[1]);
+        } else {
+            Toast.makeText(this, getString(R.string.download_error), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void populateUi(ApiResponse response) {
@@ -64,49 +90,49 @@ public class MainActivity extends AppCompatActivity {
     private void setWeatherIcon(String code) {
         switch (code) {
             case "01d":
-                mIvWeather.setBackgroundResource(R.drawable.weather_0);
+                mIvWeather.setImageResource(R.drawable.weather_0);
                 break;
             case "01n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_1);
+                mIvWeather.setImageResource(R.drawable.weather_1);
                 break;
             case "02d":
-                mIvWeather.setBackgroundResource(R.drawable.weather_2);
+                mIvWeather.setImageResource(R.drawable.weather_2);
                 break;
             case "02n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_3);
+                mIvWeather.setImageResource(R.drawable.weather_3);
                 break;
             case "03d":
             case "03n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_4);
+                mIvWeather.setImageResource(R.drawable.weather_4);
                 break;
             case "04d":
             case "04n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_5);
+                mIvWeather.setImageResource(R.drawable.weather_5);
                 break;
             case "09d":
             case "09n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_6);
+                mIvWeather.setImageResource(R.drawable.weather_6);
                 break;
             case "10d":
-                mIvWeather.setBackgroundResource(R.drawable.weather_7);
+                mIvWeather.setImageResource(R.drawable.weather_7);
                 break;
             case "10n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_8);
+                mIvWeather.setImageResource(R.drawable.weather_8);
                 break;
             case "11d":
             case "11n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_9);
+                mIvWeather.setImageResource(R.drawable.weather_9);
                 break;
             case "13d":
             case "13n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_10);
+                mIvWeather.setImageResource(R.drawable.weather_10);
                 break;
             case "50d":
             case "50n":
-                mIvWeather.setBackgroundResource(R.drawable.weather_11);
+                mIvWeather.setImageResource(R.drawable.weather_11);
                 break;
             default:
-                mIvWeather.setBackgroundResource(android.R.color.white);
+                mIvWeather.setImageResource(android.R.color.white);
         }
     }
 }

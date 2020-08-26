@@ -6,20 +6,20 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/image_view"
+        android:id="@+id/forward_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/primary" />
+        android:src="@color/primary"
+        android:onClick="onButtonClick"/>
 
     <ImageView
-        android:id="@+id/image_view_1"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@color/primary"
         android:src="@drawable/ic_arrow_forward_black_24dp"
-        app:layout_constraintStart_toStartOf="@id/image_view"
-        app:layout_constraintEnd_toEndOf="@id/image_view"
-        app:layout_constraintTop_toTopOf="@id/image_view"
-        app:layout_constraintBottom_toBottomOf="@id/image_view"/>
+        app:layout_constraintStart_toStartOf="@id/forward_button"
+        app:layout_constraintEnd_toEndOf="@id/forward_button"
+        app:layout_constraintTop_toTopOf="@id/forward_button"
+        app:layout_constraintBottom_toBottomOf="@id/forward_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

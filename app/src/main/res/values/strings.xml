@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">What\'s the weather?</string>
+    <string name="download_error">Error downloading weather</string>
 </resources>

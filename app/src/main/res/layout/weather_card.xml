@@ -18,7 +18,7 @@
         android:id="@+id/iv_weather"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/weather_8"
+        tools:src="@drawable/weather_0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintHorizontal_bias="1"

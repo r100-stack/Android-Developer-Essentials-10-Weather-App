@@ -14,18 +14,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/textView"
+            android:id="@+id/et_location"
             style="@style/Title"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:inputType="textCapWords"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Baton Rouge" />
+            android:text="Baton Rouge"
+            android:nextFocusRight="@id/forward_button"/>
 
         <include
+            android:id="@+id/forward_button"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="@dimen/default_margin_small"
