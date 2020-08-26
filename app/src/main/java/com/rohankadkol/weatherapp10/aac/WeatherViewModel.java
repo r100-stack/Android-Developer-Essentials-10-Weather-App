@@ -23,22 +23,7 @@ public class WeatherViewModel extends AndroidViewModel {
     }
 
     public void downloadWeather(double latitude, double longitude) {
-        ApiMethods apiMethods = RetrofitClientInstance.getInstance().create(ApiMethods.class);
-        apiMethods.getWeather(latitude, longitude).enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (!response.isSuccessful() || response.body() == null) {
-                    return;
-                }
-                ApiResponse apiResponse = response.body();
-                mApiResponse.setValue(apiResponse);
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
-
-            }
-        });
+        // TODO (3): Download the weather. If there's no error, then call mApiResponse.setValue()
     }
 
     public MutableLiveData<ApiResponse> getApiResponse() {

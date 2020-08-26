@@ -60,16 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
         mTvTime = findViewById(R.id.tv_time);
 
-        mWeatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
-        mWeatherViewModel.getApiResponse().observe(this, new Observer<ApiResponse>() {
-            @Override
-            public void onChanged(ApiResponse response) {
-                Log.d(TAG, "onChanged: " + response.getCurrent().getTemp());
-                populateUi(response);
-            }
-        });
+        // TODO (4): Initialize mWeatherViewModel
+        // TODO (5): Observe for changes in the ViewModel
 
-        downloadWeather();
+        // TODO (6): Call downloadWeather() when the app launches
     }
 
     public void onButtonClick(View view) {
@@ -77,29 +71,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void downloadWeather() {
-        double[] latLng = GeocoderUtils.getLatLng(this, mEtLocation.getText().toString());
-        if (latLng != null) {
-            mWeatherViewModel.downloadWeather(latLng[0], latLng[1]);
-        } else {
-            Toast.makeText(this, getString(R.string.download_error), Toast.LENGTH_SHORT).show();
-        }
+        // TODO (7): Get the coordinates from the entered location.
+        // TODO (8): Call the downloadWeather method in the repository(WeatherViewModel)
+        // TODO (9): If there's any error, give an appropriate Toast
     }
 
     private void populateUi(ApiResponse response) {
-        mTvTemp.setText(String.format("%.0f°", response.getCurrent().getTemp()));
-        mTvUnit.setText("F");
-        mTvWeather.setText(response.getCurrent().getWeather()[0].getMain());
-        mTvHigh.setText(String.format("%.0f°", response.getDaily()[0].getTemp().getMax()));
-        mTvLow.setText(String.format("%.0f°", response.getDaily()[0].getTemp().getMin()));
-        setWeatherIcon(response.getCurrent().getWeather()[0].getIcon());
-
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa, EEE, MMM dd");
-        TimeZone timeZone = TimeZone.getDefault();
-        long time = response.getCurrent().getDt();
-        long offset = timeZone.getOffset(time * 1000) / 1000;
-        long localTime = time - offset + response.getTimezone_offset();
-        String timeString = "Local time: " + formatter.format(new Date(localTime * 1000));
-        mTvTime.setText(timeString);
+        // TODO (10): Populate all the fields of the WeatherCard
     }
 
     private void setWeatherIcon(String code) {

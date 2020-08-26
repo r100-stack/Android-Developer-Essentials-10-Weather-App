@@ -8,12 +8,7 @@ public class RetrofitClientInstance {
     private static String OPEN_WEATHER_BASE_URI = "https://api.openweathermap.org/";
 
     public static Retrofit getInstance() {
-        if (sRetrofit == null) {
-            sRetrofit = new Retrofit.Builder()
-                    .baseUrl(OPEN_WEATHER_BASE_URI)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
+        // TODO (1): Initialize sRetrofit if null.
         return sRetrofit;
     }
 }
