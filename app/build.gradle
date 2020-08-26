@@ -27,6 +27,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
+    // Material Design
     implementation 'com.google.android.material:material:1.2.0'
+
+    // To load gifs in ImageViews
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 }

@@ -29,7 +29,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="@dimen/default_margin_small"
-            app:layout="@layout/forward_button"/>
+            layout="@layout/forward_button"/>
 
     </LinearLayout>
 
